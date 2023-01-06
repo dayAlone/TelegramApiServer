@@ -26,7 +26,8 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get autoremove --purge -y && apt-get autoclean -y && apt-get clean -y \
     && rm -rf /usr/src
     
-RUN ls ./
+COPY . /app
+WORKDIR /app
 
 EXPOSE 9503
 
