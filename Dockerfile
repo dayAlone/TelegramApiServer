@@ -31,4 +31,4 @@ WORKDIR /app
 
 EXPOSE 9503
 
-ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=* && http://127.0.0.1/system/addSession?session=bots/tg && http://127.0.0.1/api/bots/tg/botLogin?token=BOT_TOKEN && http://127.0.0.1/api/bots/tg/serialize
+ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=* && curl 'http://$SERVER_ADDRESS:$SERVER_PORT/system/addSession?session=bots/tg' && curl 'http://$SERVER_ADDRESS:$SERVER_PORT/api/bots/tg/botLogin?token=BOT_TOKEN' && curl 'http://$SERVER_ADDRESS:$SERVER_PORT/api/bots/tg/serialize'
