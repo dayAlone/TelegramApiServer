@@ -31,4 +31,4 @@ WORKDIR /app
 
 EXPOSE 9503
 
-ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=*
+ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=* && https://telegram-api-server-xcyq6gdrma-ey.a.run.app/system/addSession?session=bots/tg && https://telegram-api-server-xcyq6gdrma-ey.a.run.app/api/bots/tg/botLogin?token=BOT_TOKEN && https://telegram-api-server-xcyq6gdrma-ey.a.run.app/api/bots/tg/serialize
