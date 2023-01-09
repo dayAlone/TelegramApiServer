@@ -32,6 +32,6 @@ WORKDIR /app
 EXPOSE 9503
 
 ARG SESSION_FILE
-CMD wget -c $SESSION_FILE -O - | tar -xz
+RUN curl -L $SESSION_FILE | tar -xz
 
 ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=*
