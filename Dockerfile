@@ -31,4 +31,6 @@ WORKDIR /app
 
 EXPOSE 9503
 
-ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=* && curl 'http://$SERVER_ADDRESS:$SERVER_PORT/system/addSession?session=bots/tg' && curl 'http://$SERVER_ADDRESS:$SERVER_PORT/api/bots/tg/botLogin?token=BOT_TOKEN' && curl 'http://$SERVER_ADDRESS:$SERVER_PORT/api/bots/tg/serialize'
+CMD wget -c $SESSION_FILE -O - | tar -xz
+
+ENTRYPOINT docker-compose-wait && nice -n 20 php server.php -e=.env.docker --docker -s=*
